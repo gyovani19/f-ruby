@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASC 2025 - Shows</title>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-6">🎶 Programação de Shows 🎶</h1>
+        
+        <% if @shows.any? %>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <% @shows.each do |show| %>
+                    <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
+                        <img src="<%= show['imgUrl'] %>" alt="<%= show['name'] %>" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h2 class="text-2xl font-semibold"><%= show['name'] %></h2>
+                            <p class="text-gray-400 text-sm mt-2"><%= show['description'] %></p>
+                            <p class="mt-4"><strong>📅 Data:</strong> <%= show['startDate'].to_date %></p>
+                            <p><strong>📍 Local:</strong> <%= show['location'] %></p>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        <% else %>
+            <p class="text-center text-gray-400 text-lg">Nenhum show encontrado.</p>
+        <% end %>
+    </div>
+</body>
+</html>
